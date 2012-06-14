@@ -29,6 +29,14 @@ fi
 echo "-----> Installing dependencies"
 ./local/bin/cpanm --installdeps . 2>&1 | indent
 
+echo "-----> Installing GeoIP Pure Perl"
+curl -s -O http://www.cpan.org/authors/id/B/BO/BORISZ/Geo-IP-1.40.tar.gz
+tar -zxf Geo-IP-1.40.tar.gz
+cd Geo-IP-1.40
+perl Makefile.PL PP=1 2>&1 | indent
+make 2>&1 | indent
+make install 2>&1 | indent
+
 echo "-----> Installing Starman"
 ./local/bin/cpanm Starman 2>&1 | indent
 
